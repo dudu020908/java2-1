@@ -1,3 +1,7 @@
+# 주석
+note/
+test.java
+.gitignore
 # Compiled class file
 *.class
 
