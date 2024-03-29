@@ -1,5 +1,4 @@
-
-
+package chapter02;
 public class Chapter21 {
     public static int sum(int n,int m){
         return n+m;
@@ -12,7 +11,7 @@ public class Chapter21 {
         a = '?';
         var pi = 3.14;
         System.out.println(pi);
-        System.out.println("Hello"+13);
+        System.out.println("Hello"+a);
         System.out.println(s);
     }
 }
