@@ -1,3 +1,4 @@
+package chapter02;
 import java.util.Scanner;
 public class EX2_5 {
     public static void main(String[] args) {

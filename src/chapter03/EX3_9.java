@@ -1,3 +1,4 @@
+package chapter03;
 public class EX3_9 {
     public static void main(String[] args) {
         int[] foo ={1,2,3,4,5,};

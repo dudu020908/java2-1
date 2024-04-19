@@ -1,3 +1,4 @@
+package chapter03;
 public class EX3_3 {
     public static void main(String[] args) {
         char foo='a';

@@ -1,3 +1,4 @@
+package chapter02;
 public class Chapter21 {
     public static int sum(int n,int m){
         return n+m;
