@@ -13,7 +13,11 @@ public double getArea(){
 }
 public static void main(String[] args) {
     Circle pizza = new Circle(10,"자바피자");
+    Circle donut = new Circle();
     double area = pizza.getArea();
     System.out.println("피자의 면적은" +area);
+    area = donut.getArea();
+    donut.name = "도넛피자";
+    System.out.println(donut.name +"의면적은" + area);
     }
 }
