@@ -1,4 +1,3 @@
-package chapter03;
 import java.util.Scanner;
 
 public class EX3_6 {

@@ -1,4 +1,3 @@
-package chapter04;
 
 class Calc{
     int foo;
