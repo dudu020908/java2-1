@@ -1,6 +1,5 @@
-public class App {
-    public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
-    }
+package src;
+import java3.*;
+public class app {
+    Calc c = new Calc();
 }
-
