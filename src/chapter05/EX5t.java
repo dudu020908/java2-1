@@ -1,4 +1,3 @@
-package chapter05;
 class Person{
     String name;
     String id;

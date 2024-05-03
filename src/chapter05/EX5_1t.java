@@ -1,5 +1,3 @@
-package chapter05;
-
 public class EX5_1t {
     public static void main(String[] args) {
         Point p = new Point();

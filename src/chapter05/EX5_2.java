@@ -1,4 +1,3 @@
-package chapter05;
 class Point{
     private int x,y;
     public Point(){
