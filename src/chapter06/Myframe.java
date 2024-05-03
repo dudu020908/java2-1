@@ -10,6 +10,7 @@ public class Myframe extends JFrame{
     }
     public static void main(String[] args) {
         Myframe frame = new Myframe(); 
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
 }
