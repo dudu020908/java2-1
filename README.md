@@ -1,9 +1,9 @@
 # 이도원 학번 201840126
 #### 5월 17일 강의
-배치관리자 대표 유형 4가지
+배치관리자 대표 유형 4가지   
 **FlowLayout**   
 컴포넌트가 삽입되는 순서대로 왼쪽에서 오른쪽으로 배치   
-배치할 공간이 없으면 아래로 내려와서 반복
+배치할 공간이 없으면 아래로 내려와서 반복   
 **BorderLayout**   
 컨테이너의 공간을 동서남북중앙 5개의영역으로 나눔   
 **GridLayout**   
@@ -13,6 +13,49 @@
 **CardLayout**   
 컨테이너의 공간에 카드를 쌓듯이 컴포넌트를 포개어 배치   
 컴포넌트의 크기는 컨테이너의 크기와 일치   
+컨테이너와 디폴트 배치관리자   
+**컨테이너 생성시 자동 생성되는 배치관리자**   
+AWT와 스윙컨테이너 디폴트 배치관리자   
+Window,Jwindow / BorderLayout   
+Frame,JFrame / BorderLayout   
+Dialog,JDialog / BorderLayout   
+Panel,JPanel / FlowLayout   
+Applety,JApplet / FlowLayout   
+**컨테이너에 새로운 배치관리자 설정**   
+컨테이너에 새 배치관리자 설정   
+setLayout()메소드를 호출하여 새로운 배치관리자를 설정할수 있음   
+**FlowLayout**배치관리자   
+컴포넌트를 컨테이너 내에서 왼쪽에서 오른쪽으로 배치후 다시 위에서 아래로 순서대로 배치   
+생성자   FlowLayout()   FlowLayout(int align,int hGap int VGap) 컴포넌트를 정렬하는 방법지정    Gap은 수평(h),수직(v)간격 조정   
+```package chapter08;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import java.awt.*;
+class EX8_3  extends JFrame{
+    public EX8_3(){
+        setTitle("플로우레이아웃 예제");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Container contentPane = getContentPane(); //컨텐트팬 알아내기
+
+        //왼쪽정령로 수평 30 수직 40픽셀 배치 플로우 레이아웃 생성
+        contentPane.setLayout(new FlowLayout(FlowLayout.LEFT,30,40));
+
+        contentPane.add(new JButton("add"));
+        contentPane.add(new JButton("sub"));
+        contentPane.add(new JButton("mul"));
+        contentPane.add(new JButton("div"));
+        contentPane.add(new JButton("Calculate"));
+
+        setSize(300,200);
+        setVisible(true);
+    }
+    public static void main(String[] args) {
+        new EX8_3();
+    }
+}```   
+
+
 
 #### 5월 3일 강의
 컬렉션
