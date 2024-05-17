@@ -38,7 +38,7 @@ class EX8_3  extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container contentPane = getContentPane(); //컨텐트팬 알아내기
 
-        //왼쪽정령로 수평 30 수직 40픽셀 배치 플로우 레이아웃 생성
+        //왼쪽정렬로 수평 30 수직 40픽셀 배치 플로우 레이아웃 생성
         contentPane.setLayout(new FlowLayout(FlowLayout.LEFT,30,40));
 
         contentPane.add(new JButton("add"));
@@ -56,7 +56,34 @@ class EX8_3  extends JFrame{
 }
 
 ```
+BorderLayout   
+```package chapter08;
 
+import javax.swing.*;
+import java.awt.*;
+
+public class EX8_4 extends JFrame{
+    public EX8_4(){
+        setTitle("보더레이아웃예제");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Container contentPane = getContentPane();
+
+        contentPane.setLayout(new BorderLayout(30,20));
+
+        contentPane.add(new JButton("Calculate"),BorderLayout.CENTER);
+        contentPane.add(new JButton("add"),BorderLayout.NORTH);
+        contentPane.add(new JButton("sub"),BorderLayout.SOUTH);
+        contentPane.add(new JButton("mul"),BorderLayout.EAST);
+        contentPane.add(new JButton("div"),BorderLayout.WEST);
+        setSize(300,200);
+        setVisible(true);
+    }
+    public static void main(String[] args) {
+        new EX8_4();
+    }
+}
+```   
+GridLayout
 #### 5월 3일 강의
 컬렉션
     element라 불리는 가변 개수의 객체들의 저장소
