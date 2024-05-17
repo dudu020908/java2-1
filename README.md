@@ -27,7 +27,7 @@ setLayout()메소드를 호출하여 새로운 배치관리자를 설정할수 �
 **FlowLayout**배치관리자   
 컴포넌트를 컨테이너 내에서 왼쪽에서 오른쪽으로 배치후 다시 위에서 아래로 순서대로 배치   
 생성자   FlowLayout()   FlowLayout(int align,int hGap int VGap) 컴포넌트를 정렬하는 방법지정    Gap은 수평(h),수직(v)간격 조정   
-```package chapter08;
+``` package chapter08;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
