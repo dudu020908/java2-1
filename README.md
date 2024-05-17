@@ -1,4 +1,7 @@
 # 이도원 학번 201840126
+#### 5월 17일 강의
+배치관리자 대표 유형 4가지
+** flowlayout
 
 #### 5월 3일 강의
 컬렉션
@@ -172,6 +175,7 @@ protected 같은패키지의 모든 클래스 허용
 업캐스팅된 래퍼런스로는 객체 실제 타입을 구별하기 어려움
 래퍼런스가 가리키는 객체의 타입을 구분하기 위해 instanceof 연산자를 사용
 예)
+```
 class Person{}
 class Researcher extends Person
 class Professor extends Researcher
@@ -180,7 +184,7 @@ if(p instanceof Person) //true
 if(p instanceof Student) // false Student 를 상속x
 if(p instanceof Researcher) true
 if(p instanceof Professor) true
-
+```
 메소드 오버라이딩의 개념
 서브클래스 에서 슈퍼 클래스에 선언된 메소드를 중복 작성해서
 슈퍼클래스의 메소드를 무력화하고 객체의 주인이되는것으로
