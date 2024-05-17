@@ -53,9 +53,9 @@ class EX8_3  extends JFrame{
     public static void main(String[] args) {
         new EX8_3();
     }
-}```   
+}
 
-
+```
 
 #### 5월 3일 강의
 컬렉션
