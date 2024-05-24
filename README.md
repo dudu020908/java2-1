@@ -32,8 +32,6 @@ C++의 MFC ,C#, VISUAL Basic, X window, Android모두 이벤트 기반 GUI 응�
 이벤트 리스너에 전달함   
 이벤트 객체가 포함하는 정보   
 
-
-
 1. 이벤트 종류와 이벤트 소스   
 2. 이벤트가 발생한 화면 좌표 및 컴포넌트 소스 내 좌표   
 3. 이벤트가 발생한 버튼이나 메뉴 아이템들의 문자열   
@@ -78,6 +76,10 @@ ActionListener 인터페이스를 상속받은 MyActionListener 클래스를 선
 ```   
 일반적으로 컴포넌트에 이벤트 리스너를 등록할때 다음과 같이 한다.   
 ```component.addXXXListener(listener);```
+**이벤트 리스너 작성방법**   
+독립 클래스   
+내부 클래스 : InnerClassListener.this.setTitle(b.getText())   
+익명 클래스 : AnnonymousClassListener.this.setTitle(b.getText())   
 
 
 #### 5월 17일 강의
