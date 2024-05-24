@@ -154,7 +154,7 @@ public class EX9_02 extends JFrame{
     public static void main(String[] args) {
         new EX9_02();
     }
-}```   
+}```      
 
 #### 5월 17일 강의
 배치관리자 대표 유형 4가지   
