@@ -237,6 +237,132 @@ public class MouseListenerEx extends JFrame{
     }
 }
 ```
+   
+**어댑터 클래스**   
+이벤트 리스너 구현에 따른 부담   
+리스너의 추상 메소드를 '모두' 구현해야하는 부담   
+어댑터 클래스
+- 리스너의 모든 메소드를 단순 리턴하도록 만든 클래스 JDK에서 제공
+- ActionListener와 같이 어댑터가 제공되지않는 리스너도 있음(메소드가 하나뿐인 경우)   
+예제 9-5   
+```
+package chapter09;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+public class MouseAdapterEx extends JFrame{
+    private JLabel la = new JLabel("Hello");
+
+    public MouseAdapterEx(){
+        setTitle("마우스이벤트 예제");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(200,200);
+        setVisible(true);
+
+        Container c = getContentPane();
+        c.addMouseListener(new MyMouseAdapter());
+
+        c.setLayout(null);
+        la.setSize(50,20);
+        la.setLocation(30,30);
+        c.add(la);
+    }
+    class MyMouseAdapter extends MouseAdapter{
+        public void mousePressed(MouseEvent e){
+            int x = e.getX();
+            int y = e.getY();
+            la.setLocation(x,y);
+        }
+    }
+    public static void main(String[] args) {
+        new MouseAdapterEx();
+    }
+}
+
+```
+   
+**Key 이벤트와 포커스**   
+키 입력시 다음의 세 경우 Key 이벤트 발생   
+- 키를 누르는 순간   
+- 누른 키를 떼는 순간   
+- 누른 키를 떼는 순간(unicode의 경우)   
+키 이벤트를 받을 수 있는 조건   
+- 모든 컴포넌트   
+- 현재 포커스를 가진 컴포넌트가 키 이벤트 독점   
+**포커스**   
+컴포넌트나 응용 프로그램이 키 이벤트를 독점하는권한   
+KeyListener   
+응용프로그램에서 KeyListener 상속받아 키 리스너 구현 메소드3개   
+- keyPressed()   
+- keyTyped()   
+- keyReleased()   
+**유니코드 키**   
+특징   
+국제 산업 표준   
+전세계 문자를 컴퓨터에서 일관되게 표현하기 위한 코드체계   
+문자들에 대해서만 키 코드 값 정의   
+문자가 아닌 경우 표준화된 키 코드 값 없음   
+유니코드 키가 입력된경우   
+key리스너 메소드가 순서대로 호출   
+**key 이벤트 객체**   
+입력된 키 정보를 가진 이벤트 객체   
+객체의 메소드로 입력된 키 판별 
+char KeyEvent.getKeyChar()  
+키의 유니코드 문자값 리턴   
+문자 키인 경우에만 의미있음   
+입력된 키를 판별하기 위해 문자값과 비교하면됨   
+int Key Event.getKeyCode()
+유니코드 키 포함   
+모든키에 대한 정수형 키 코드 리턴   
+입력된 키를 판별 위해 가상 키값과 비교   
+가상 키 값은 KeyEvent 클래스에 상수로 선언   
+   
+예제 9-6 입력된 문자 키 판별   
+```
+package chapter09;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class KeyCharEx extends JFrame{
+    private JLabel la = new JLabel("<Enter>키로 배경색이 바뀝니다.");
+    public KeyCharEx(){
+        super("KeyListener의 문자 키 입력 예제");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        Container c = getContentPane();
+        c.setLayout(new FlowLayout());
+        c.add(la);
+        c.addKeyListener(new MyKeyListener());
+        setSize(250,150);
+        setVisible(true);
+
+        c.setFocusable(true);
+        c.requestFocus();
+    }
+    class MyKeyListener extends KeyAdapter{
+        public void keyPressed(KeyEvent e){
+            int r = (int) (Math.random()*256);
+            int g = (int) (Math.random()*256);
+            int b = (int) (Math.random()*256);
+
+            switch(e.getKeyChar()){
+                case '\n':
+                la.setText("r="+ r + ", g=" + g + ", b=" + b);
+                getContentPane().setBackground(new Color(r, g, b));
+
+                break;
+                case 'q' : System.exit(0);
+            }
+        }
+    }
+    public static void main(String[] args) {
+        new KeyCharEx();
+    }
+}
+
+```
+   
 #### 5월 17일 강의
 배치관리자 대표 유형 4가지   
 **FlowLayout**   
