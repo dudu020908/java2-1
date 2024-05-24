@@ -89,7 +89,7 @@ ActionListener 인터페이스를 상속받은 MyActionListener 클래스를 선
 - 클래스의 이름 없이 간단한 리스너 작성   
 - 클래스 조차 만들 필요 없이 리스너 코드가 간단한 경우에 적합   
 
-예제 9-1   
+예제 9-1 독립클래스   
 ```
 package chapter09;
 import java.awt.*;
@@ -123,7 +123,7 @@ public class EventTest01 extends JFrame {
 }
 ```
    
-예제 9-2   
+예제 9-2 내부클래스   
 ```
 package chapter09;
 
@@ -160,7 +160,44 @@ public class EX9_02 extends JFrame{
     }
 }
 ```
+   
+예제 9-3 익명 클래스   
+```
+package chapter09;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class AnonymouseClassListener extends JFrame{
+    public AnonymouseClassListener(){
+        setTitle("이벤트리스너 작성");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(200,120);
+        setVisible(true);
+
+        Container c = getContentPane();
+        c.setLayout(new FlowLayout());
+        JButton btn = new JButton("Action");
+        c.add(btn);
+        btn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                JButton b = (JButton)e.getSource();
+                if(b.getText().equals("Action"))
+                    b.setText("액션");
+                else
+                    b.setText("Action");
+            
+            setTitle(b.getText());
+            }
+        });
+    }
+    public static void main(String[] args) {
+        new AnonymouseClassListener();
+    }
+}
+
+```
 #### 5월 17일 강의
 배치관리자 대표 유형 4가지   
 **FlowLayout**   
