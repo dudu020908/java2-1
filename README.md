@@ -90,7 +90,8 @@ ActionListener 인터페이스를 상속받은 MyActionListener 클래스를 선
 - 클래스 조차 만들 필요 없이 리스너 코드가 간단한 경우에 적합   
 
 예제 9-1   
-```package chapter09;
+```
+package chapter09;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -119,9 +120,12 @@ public class EventTest01 extends JFrame {
 				b.setText("액션");
 			else b.setText("Action");
 	}
-}```   
+}
+```
+   
 예제 9-2   
-```package chapter09;
+```
+package chapter09;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -154,7 +158,9 @@ public class EX9_02 extends JFrame{
     public static void main(String[] args) {
         new EX9_02();
     }
-}```      
+}
+```
+   
 
 #### 5월 17일 강의
 배치관리자 대표 유형 4가지   
