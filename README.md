@@ -79,10 +79,82 @@ ActionListener 인터페이스를 상속받은 MyActionListener 클래스를 선
 일반적으로 컴포넌트에 이벤트 리스너를 등록할때 다음과 같이 한다.   
 ```component.addXXXListener(listener);```
 **이벤트 리스너 작성방법**   
-독립 클래스   
+독립 클래스    
+- 이벤트 리스너를 완전한 클래스로 작성   
+- 이벤트 리스너를 여러 곳에서 사용할 때 적합   
 내부 클래스 : InnerClassListener.this.setTitle(b.getText())   
+- 클래스 안에 멤버처럼 클래스 작성   
+- 이벤트 리스너를 특정 클래스에서만 사용할 때 적합   
 익명 클래스 : AnnonymousClassListener.this.setTitle(b.getText())   
+- 클래스의 이름 없이 간단한 리스너 작성   
+- 클래스 조차 만들 필요 없이 리스너 코드가 간단한 경우에 적합   
 
+예제 9-1   
+```package chapter09;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class EventTest01 extends JFrame {
+	public EventTest01(){
+		setTitle("이벤트리스너 예제");
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setSize(250,120);
+		setVisible(true);
+		Container c = getContentPane();
+		c.setLayout(new FlowLayout());
+		JButton btn = new JButton("Action");
+		btn.addActionListener(new MyAction());
+		c.add(btn);
+	}
+	public static void main(String[] args) {
+		new EventTest01();	
+	}
+}
+	class MyAction implements ActionListener{
+		
+		public void actionPerformed(ActionEvent arg0) {
+			JButton b=(JButton)arg0.getSource();  //이벤트 발생한 소스를 얻는다
+			if(b.getText().equals("Action"))
+				b.setText("액션");
+			else b.setText("Action");
+	}
+}```   
+예제 9-2   
+```package chapter09;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class EX9_02 extends JFrame{
+    public EX9_02(){
+        setTitle("이벤트 리스너예제");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(350,200);
+        setVisible(true);
+        
+        Container c = getContentPane();
+        c.setLayout(new FlowLayout());
+        JButton btn = new JButton("Action");
+        btn.addActionListener(new MyActionListener());
+        c.add(btn);
+    }
+    private class MyActionListener implements ActionListener{
+        public void actionPerformed(ActionEvent e){
+            JButton b = (JButton)e.getSource();
+            if (b.getText().equals("Action"))
+                b.setText("액션");
+            else
+                b.setText("Action"); 
+
+        EX9_02.this.setTitle(b.getText());
+        }
+    }
+    public static void main(String[] args) {
+        new EX9_02();
+    }
+}```   
 
 #### 5월 17일 강의
 배치관리자 대표 유형 4가지   
