@@ -97,6 +97,49 @@ public class LabelEx extends JFrame{
 
 ```   
    
+**JButton**   
+용도   
+- 사용자로부터 명령을 입력받기위해   
+- 버튼은 클릭될때 Action 이벤트 발생   
+   
+생성   
+JButton()   
+3개의 이미지 버튼   
+normal,rollover,pressed 세종류   
+   
+예제 10-3   
+```
+package chapter10;
+import javax.swing.*;
+import java.awt.*;
+public class ButtonImageEx extends JFrame{
+    public ButtonImageEx(){
+        setTitle("이미지 버튼예제");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+
+        Container c = getContentPane();
+        c.setLayout(new FlowLayout());
+
+        ImageIcon normalIcon = new ImageIcon("images/normalIcon.gif");
+        ImageIcon rolloverIcon = new ImageIcon("images/rolloverIcon.gif");
+        ImageIcon pressedIcon = new ImageIcon("images/pressedIcon.gif");
+
+        JButton btn = new JButton("call~~",normalIcon);
+        btn.setPressedIcon(pressedIcon);
+        btn.setRolloverIcon(rolloverIcon);
+        c.add(btn);
+
+        setSize(250,150);
+        setVisible(true);
+    }
+    public static void main(String[] args) {
+        new ButtonImageEx();
+    }
+}
+```   
+   
+
 #### 5월 24일 강의   
 
 **이벤트 기반 프로그래밍(Event Driven Programming)**   
