@@ -1,5 +1,57 @@
 # 이도원 학번 201840126
 #### 5월 31일 강의
+**자바의 GUI 프로그래밍 방법 2종류**   
+컴포넌트 기반   
+- 스윙 컴포넌트 이용 쉽게 구축   
+- 자바에서 제공하는 컴포넌트 한계 벗어나지못함   
+그래픽 기반   
+
+스윙 컴포넌트의 공통 메소드, J컴포넌트의 메소드   
+J컴포넌트   
+스윙 컴포넌트는 모두 상속받는 슈퍼,추상 클래스   
+스윙 컴포넌트들이 상속받는 공통 메소드의 상수 구현   
+J컴포넌트의 주요 메소드 사례   
+setground, setOpqque, setFont,등 모양과 관련된 메소드   
+Enabled, Visible등 상태와 관련된 메소드   
+Width, Height, Location등 위치와 크기에 관련된 메소드   
+외에도 컨테이너를 위한 메소드 들이 있다.   
+예제 10-1
+```
+package chapter10;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+public class JComponentEx extends JFrame {
+    public JComponentEx(){
+        super("J컴포넌트의 공통 메소드 예제");
+        Container c = getContentPane();
+        c.setLayout(new FlowLayout());
+
+        JButton b1 = new JButton("Magenta/Yellow Button");
+        JButton b2 = new JButton("  Disabled Button  ");
+        JButton b3 = new JButton("get X(), getY()");
+
+        b1.setBackground(Color.YELLOW);
+        b1.setForeground(Color.MAGENTA);
+        b1.setFont(new Font("Arial", Font.ITALIC,20));
+        b2.setEnabled(false);
+        b3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                JButton b = (JButton)e.getSource();
+                setTitle(b.getX()+","+b.getY());
+            }
+        });
+        c.add(b1); c.add(b2); c.add(b3);
+
+        setSize(260,200); setVisible(true);
+        }
+        public static void main(String[] args) {
+            new JComponentEx();
+        }
+}
+```
 
 #### 5월 24일 강의   
 
