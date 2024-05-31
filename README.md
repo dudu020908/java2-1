@@ -139,7 +139,13 @@ public class ButtonImageEx extends JFrame{
 }
 ```   
    
+J체크박스   
+체크박스도 만들수 있음, 문자열 체크박스,이미지와 문자열 체크박스 가능   
+10-4 예제   
+```
 
+```   
+   
 #### 5월 24일 강의   
 
 **이벤트 기반 프로그래밍(Event Driven Programming)**   
