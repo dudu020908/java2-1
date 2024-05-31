@@ -143,9 +143,186 @@ J체크박스
 체크박스도 만들수 있음, 문자열 체크박스,이미지와 문자열 체크박스 가능   
 10-4 예제   
 ```
+package chapter10;
+import javax.swing.*;
+import java.awt.*;
+public class CheckBoxEx extends JFrame{
+    public CheckBoxEx(){
+        setTitle("체크박스 만들기 예제");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        Container c = getContentPane();
+        c.setLayout(new FlowLayout());
+        ImageIcon normalIcon = new ImageIcon("images/normalIcon.gif");
+
+        JCheckBox apple = new JCheckBox("사과");
+        JCheckBox pear = new JCheckBox("배",true);
+        JCheckBox cherry = new JCheckBox("체리",normalIcon);
+
+        c.add(apple);
+        c.add(pear);
+        c.add(cherry);
+
+        setSize(250,150);
+        setVisible(true);
+    }
+    public static void main(String[] args) {
+        new CheckBoxEx();
+    }
+}
+```   
+   
+**체크박스에 item 이벤트 처리**   
+item 이벤트   
+체크박스의 선택 상태에 변화가 생겼을 때 발생하는 이벤트   
+사용자가 체크박스를 선택/해제할때   
+프로그램에서 체크박스를 선택/해제 하여 체크 상태에 변화가 생겼을 때   
+이벤트가 발생시 아이템 이벤트 객체 생성   
+   
+10-5 예제   
+```
+package chapter10;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+public class CheckBoxItemEventEx extends JFrame{
+    private JCheckBox[] fruits = new JCheckBox[3];
+    private String [] names = {"사과","배","체리"};
+
+    private JLabel sumLabel;
+
+    public CheckBoxItemEventEx(){
+        setTitle("체크박스와 아이템이벤트예제");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        Container c = getContentPane();
+        c.setLayout(new FlowLayout());
+
+        c.add(new JLabel("사과100원, 배 500원, 체리 1000원"));
+
+        // 3개의 체크박스 컴포넌트 생성, 컨텐츠팬에 삽입, 아이템리스너 등록
+
+       MyItemListener listener = new MyItemListener();
+        for(int i=0; i<fruits.length;i++){
+            fruits[i] = new JCheckBox(names[i]);
+            fruits[i].setBorderPainted(true);
+            c.add(fruits[i]);
+            fruits[i].addItemListener(listener);
+        }
+        sumLabel = new JLabel("현재 0원입니다.");
+        c.add(sumLabel);
+
+        setSize(350,300);
+        setVisible(true);
+    }
+    class MyItemListener implements ItemListener{
+        private int sum = 0;
+
+
+        public void itemStateChanged(ItemEvent e){
+            if (e.getStateChange()==ItemEvent.SELECTED) {
+                if(e.getItem()== fruits[0])
+                sum +=100;
+                else if(e.getItem()== fruits[1])
+                sum +=500;
+                else
+                sum +=1000;
+            }
+            else {
+                if(e.getItem()== fruits[0])
+                sum -= 100;
+                else if(e.getItem()== fruits[1])
+                sum -=500;
+                else
+                sum -=1000;
+            }
+            sumLabel.setText("현재"+sum+"원입니다.");
+        }
+    }
+    public static void main(String[] args) {
+        new CheckBoxItemEventEx();
+    }
+}
 
 ```   
    
+**라디오 버튼 생성 및 item 이벤트 처리**   
+버튼 그룹핑을 해주어야함   
+1. 라디오 버튼 그룹객체 생성   
+2. 라디오 버튼 생성   
+3. 라디오 버튼을 버튼그룹에 삽입   
+위와같은 방식작동   
+10-6 예제   
+```
+package chapter10;
+import javax.swing.*;
+import java.awt.*;
+public class RadioButtonEx extends JFrame{
+    public RadioButtonEx(){
+        setTitle("라디오 버튼만들기");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        Container c = getContentPane();
+        c.setLayout(new FlowLayout());
+
+        ButtonGroup g = new ButtonGroup();
+
+        JRadioButton apple = new JRadioButton("사과");
+        JRadioButton pear = new JRadioButton("배",true);
+        JRadioButton cherry = new JRadioButton("체리");
+
+        g.add(apple);
+        g.add(cherry);
+        g.add(pear);
+
+        c.add(apple); c.add(pear); c.add(cherry);
+
+        setSize(300,300);
+        setVisible(true);
+    }
+    public static void main(String[] args) {
+        new RadioButtonEx();
+    }
+}
+
+```   
+   
+**JTextField**   
+한줄의 문자열을 입력 받는 창을 만들수 있음   
+10-7예제   
+```
+package chapter10;
+import javax.swing.*;
+import java.awt.*;
+public class TextFieldEx extends JFrame{
+    public TextFieldEx() {
+        setTitle("텍스트필드 만들기");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        Container c = getContentPane();
+        c.setLayout(new FlowLayout());
+
+        c.add(new JLabel("이름   "));
+        c.add(new JTextField(20));
+        c.add(new JLabel("학과   "));
+        c.add(new JTextField("컴공과",20));
+        c.add(new JLabel("주소   "));
+        c.add(new JTextField("서울시 ...",20));
+
+        setSize(300,300);
+        setVisible(true);
+    }
+    public static void main(String[] args) {
+        new TextFieldEx();
+    }
+}
+
+```   
+   
+**JTextArea**   
+위의 필드는 1줄, TextArea의 경우 여러줄을 입력받음, JScrollpane에 삽입 해야 스크롤바 지원을 받을수 있음에 유의,   
+예제 10-8   
+```
+
+```   
+   
+
 #### 5월 24일 강의   
 
 **이벤트 기반 프로그래밍(Event Driven Programming)**   
