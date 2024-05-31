@@ -27,6 +27,7 @@ public class JComponentEx extends JFrame {
         c.add(b1); c.add(b2); c.add(b3);
 
         setSize(260,200); setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         }
         public static void main(String[] args) {
             new JComponentEx();

@@ -16,6 +16,7 @@ setground, setOpqque, setFont,등 모양과 관련된 메소드
 Enabled, Visible등 상태와 관련된 메소드   
 Width, Height, Location등 위치와 크기에 관련된 메소드   
 외에도 컨테이너를 위한 메소드 들이 있다.   
+   
 예제 10-1
 ```
 package chapter10;
@@ -52,8 +53,50 @@ public class JComponentEx extends JFrame {
             new JComponentEx();
         }
 }
+```   
+   
+**JLabel**   
+레이블 생성 예   
+- 문자열 생성   
+JLabel textLable = new JLable("사랑합니다");
+- 이미지 생성   
+ImageIcon image = new ImageIcon("images/sunset.jpg");// 파일로부터 로딩   
+JLable imageLable = new JLable(image);   
+- 수평 정렬 값을 가진 컴포넌트 생성   
+예제 10-2   
 ```
+package chapter10;
+import javax.swing.*;
+import java.awt.*;
+public class LabelEx extends JFrame{
+    public LabelEx(){
+        setTitle("레이블예제");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        Container c = getContentPane();
+        c.setLayout(new FlowLayout());
 
+        JLabel textLabel = new JLabel("제임스 고슬링 입니더!");
+
+        ImageIcon img = new ImageIcon("images/gosling.jpg");
+        JLabel imageLabel = new JLabel(img);
+
+        ImageIcon icon = new ImageIcon("images/icon.gif");
+        JLabel label = new JLabel("커피한잔 하실래예, 전화주이소",icon,SwingConstants.CENTER);
+
+        c.add(textLabel);
+        c.add(imageLabel);
+        c.add(label);
+
+        setSize(300,500);
+        setVisible(true);
+    }
+    public static void main(String[] args) {
+        new LabelEx();
+    }
+}
+
+```   
+   
 #### 5월 24일 강의   
 
 **이벤트 기반 프로그래밍(Event Driven Programming)**   
