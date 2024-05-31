@@ -354,6 +354,45 @@ public class TextAreaEx extends JFrame{
 
 ```   
    
+**JList<E>로 리스트만들기**   
+사용자에게 하나 이상의 아이템을 보여주고 선택하는 리스트컴포넌트를 생성   
+사용자는 하나 이상의 아이템을 선택 가능 아이템은 문자열,이미지 모두 가능   
+자체적으로 스크롤을 지원하지않아 ScrollPane 에 삽입하여야 함   
+예제 10-9   
+```
+package chapter10;
+import javax.swing.*;
+import java.awt.*;
+
+public class ListEx extends JFrame{
+    private String[] fruits={"apple","banana","kiwi","mango","pear","peach","berry","strawberry","blackberry"};
+    private ImageIcon[]images = {new ImageIcon("images/gosling.jpg"),
+    new ImageIcon("images/icon.gif"),new ImageIcon("images/normalIcon.gif"),new ImageIcon("images/rolloverIcon.gif")};
+
+    public ListEx(){
+        setTitle("리스트 만들기 예제");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        Container c = getContentPane();
+        c.setLayout(new FlowLayout());
+
+        JList<String> strList = new JList<String>(fruits);
+        c.add(strList);
+        JList<ImageIcon> imageList = new JList<ImageIcon>();
+        imageList.setListData(images);
+        c.add(imageList);
+        JList<String> scrollList = new JList<String>(fruits);
+        c.add(new JScrollPane(scrollList));
+
+        setSize(3000,3000);
+        setVisible(true);
+
+    }
+    public static void main(String[] args) {
+        new ListEx();
+    }
+}
+```   
+   
 
 #### 5월 24일 강의   
 
