@@ -393,6 +393,88 @@ public class ListEx extends JFrame{
 }
 ```   
    
+**JComboBox<E>로 콤보박스 만들기**   
+J콤보박스를 이용하면 텍스트 필드, 버튼,드롭다운리스트로 구성된 콤보박스를 만들 수 있다.   
+E대신 아이템의 타입을 대입해서 구체화 해야 한다.   
+10-10예제   
+```
+package chapter10;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+public class ComboActionEx extends JFrame{
+    private String[] fruits={"apple","banana","mango"};
+    private ImageIcon[]images = {new ImageIcon("images/gosling.jpg"),
+    new ImageIcon("images/icon.gif"),new ImageIcon("images/normalIcon.gif")};
+
+    private JLabel imgLabel = new JLabel(images[0]);
+
+    public ComboActionEx(){
+        setTitle("콤보박스 활용");
+        Container c =getContentPane();
+        c.setLayout(new FlowLayout());
+        JComboBox<String> combo = new JComboBox<String>(fruits);
+        c.add(combo); c.add(imgLabel);
+
+        //콤보박스에 액션 리스너 등록, 선택된 아이템의 이미지 출력
+        combo.addActionListener(new ActionListener() {
+            public void actionPerformed<String>(ActionEvent e){
+                JComboBox<String> cb = (JComboBox<String>)e.getSource();
+
+                int index = cb.getSelectedIndex();
+
+                imgLabel.setIcon(images[index]);
+            }
+        });
+
+        setSize(300,250);
+        setVisible(true);
+    }
+    public static void main(String[] args) {
+        new ComboActionEx();
+    }
+}
+
+```   
+   
+**메뉴바**   
+10-11예제 메뉴바만들기   
+```
+package chapter10;
+import javax.swing.*;
+public class MenuEx extends JFrame{
+    public MenuEx(){
+        setTitle("메뉴만들기");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        createMenu();
+        setSize(250,200);
+        setVisible(true);
+    }
+    private void createMenu(){
+        JMenuBar mb = new JMenuBar();
+        JMenu screenMenu = new JMenu("Screen");
+
+        screenMenu.add(new JMenuItem("Load"));
+        screenMenu.add(new JMenuItem("Hide"));
+        screenMenu.add(new JMenuItem("ReShow"));
+        screenMenu.addSeparator();
+        screenMenu.add(new JMenuItem("Exit"));
+
+        mb.add(screenMenu);
+        mb.add(new JMenu("Edit"));
+        mb.add(new JMenu("Source"));
+        mb.add(new JMenu("Project"));
+        mb.add(new JMenu("Run"));
+
+        setJMenuBar(mb);
+    }
+    public static void main(String[] args) {
+        new MenuEx();
+    }
+}
+
+```   
+   
 
 #### 5월 24일 강의   
 

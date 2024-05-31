@@ -29,4 +29,7 @@ public class MouseEventAllEx extends JFrame{
     class MyMouseListener implements MouseListener,MouseMotionListener{
         public void mousePresssed(MouseEvent e){}
     }
+    public static void main(String[] args) {
+      new MouseEventAllEx();
+    }
 }
