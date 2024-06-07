@@ -369,7 +369,118 @@ public class GraphicsDrawLineMouseEx extends JFrame{
 - 하나의 응용프로그램에 속한 스레드는 변수메모리, 파일 오픈 테이블등 자원으로 공유하므로, 문맥교환에 따른 오버헤드가 매우 작음   
 - 현재 대부분의 운영체제가 멀티스레딩을 기본으로 하고있음   
    
+자바 스레드
+- JVM에 의해 스케쥴 되는 실행단위의 코드블럭   
+- 스레드의 생명주기는 JVM에 의해 관리   
+   
+JVM은 하나의 응용프로그램만 실행   
+함께 실행, 함께 종료   
+응용프로그램은 하나이상의 스레드로 구성 가능   
 
+예제12-1   
+```
+package chapter12;
+import java.awt.*;
+import javax.swing.*;
+class TimerThread extends Thread{
+    private JLabel timerLabel;
+
+    public TimerThread(JLabel timerLabel){
+        this.timerLabel=timerLabel;
+    }
+    @Override
+    public void run(){
+        int n=0;
+        while (true) {
+            timerLabel.setText(Integer.toString(n));
+            n++;
+            try{
+                Thread.sleep(1000);
+            }
+            catch(InterruptedException e){
+                return;
+            }
+        }
+    }
+}
+
+public class ThreadTimerEx extends JFrame{
+    public ThreadTimerEx(){
+        setTitle("스레드 상속받은 타이머 스레드예제");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Container c = getContentPane();
+        c.setLayout(new FlowLayout());
+
+        JLabel timerLabel = new JLabel();
+        timerLabel.setFont(new Font("Gothic",Font.ITALIC,80));
+        c.add(timerLabel);
+
+        TimerThread th = new TimerThread(timerLabel);
+
+        setSize(250,150);
+        setVisible(true);
+
+        th.start();
+    }
+    public static void main(String[] args) {
+        new ThreadTimerEx();
+    }
+}
+```   
+예제12-2   
+```
+package chapter12;
+import java.awt.*;
+import javax.swing.*;
+
+class TimerRunnable implements Runnable {
+    private JLabel timerLabel;
+    public TimerRunnable(JLabel timerLabel){
+        this.timerLabel =timerLabel;
+    }
+    @Override
+    public void run(){
+        int n=0;
+        while (true) {
+            timerLabel.setText(Integer.toString(n));
+            n++;
+            try{
+                Thread.sleep(1000);
+            }
+            catch(InterruptedException e){
+                return;
+            }
+        }
+    }
+}
+public class RunnableTimerEx extends JFrame{
+    RunnableTimerEx(){
+        setTitle("러너블을 구현한타이머 스레드예제");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Container c = getContentPane();
+        c.setLayout(new FlowLayout());
+
+        JLabel timerLabel = new JLabel();
+        timerLabel.setFont(new Font("Gothic",Font.ITALIC,80));
+        c.add(timerLabel);
+
+        setSize(250,150);
+        setVisible(true);
+
+        TimerRunnable runnable = new TimerRunnable(timerLabel);
+        Thread th =new Thread(runnable);
+        th.start();
+    }
+    public static void main(String[] args) {
+        new RunnableTimerEx();
+    }
+}
+
+
+```   
+   
+
+   
 
 #### 5월 31일 강의
 **자바의 GUI 프로그래밍 방법 2종류**   
