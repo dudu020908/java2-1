@@ -479,8 +479,72 @@ public class RunnableTimerEx extends JFrame{
 
 ```   
    
+예제 12-3   
+```
+package chapter12;
 
+public class ThreadMainEx {
+    public static void main(String[] args) {
+        long id=Thread.currentThread().getId();
+        String name = Thread.currentThread().getName();
+        int priority = Thread.currentThread().getPriority();
+        Thread.State s = Thread.currentThread().getState();
+
+        System.out.println("현재스레드이름 = "+name);
+        System.out.println("현재스레드ID = "+id);
+        System.out.println("현재스레드우선순위값 = "+priority);
+        System.out.println("현재스레드상태 = "+s);
+    }
+}
+
+```   
    
+예제 12-4   
+```
+package chapter12;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.util.Random;
+public class VibratingFrame extends JFrame implements Runnable{
+    private Thread th;
+    public VibratingFrame(){
+        setTitle("진동하는 프레임 만들기");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(200,200);
+        setLocation(300,300);
+        setVisible(true);
+
+        getContentPane().addMouseListener(new MouseAdapter() {
+           public void mousePressed(MouseEvent e){
+            if(!th.isAlive()) return; 
+            th.interrupt();
+            }   
+        });
+        th = new Thread(this);
+        th.start();
+    }
+    @Override
+    public void run(){
+        Random r = new Random();
+        while (true) {
+            try {
+                Thread.sleep(20);
+            }
+            catch(InterruptedException e){
+                return;
+            }
+            int x = getX() + r.nextInt()%5;
+            int y = getY() + r.nextInt()%5;
+            setLocation(x,y);
+        }
+    }
+    public static void main(String[] args) {
+        new VibratingFrame();
+    }
+}
+
+```   
 
 #### 5월 31일 강의
 **자바의 GUI 프로그래밍 방법 2종류**   
