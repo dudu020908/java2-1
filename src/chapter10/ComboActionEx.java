@@ -18,7 +18,7 @@ public class ComboActionEx extends JFrame{
 
         //콤보박스에 액션 리스너 등록, 선택된 아이템의 이미지 출력
         combo.addActionListener(new ActionListener() {
-            public void actionPerformed<String>(ActionEvent e){
+            public void actionPerformed(ActionEvent e){
                 JComboBox<String> cb = (JComboBox<String>)e.getSource();
 
                 int index = cb.getSelectedIndex();

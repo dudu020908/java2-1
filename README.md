@@ -1,4 +1,48 @@
 # 이도원 학번 201840126
+#### 6월 7일 강의   
+**스윙 컴포넌트 그리기 paintComponent()**   
+- 스윙의 페인팅 기본   
+모든 컴포넌트는 자신의 모양을 스스로 그림    
+컨테이너는 자신을 그린 후 그위에 자식 컴포넌트들에게 그리기 지시   
+모든 스윙 컴포넌트는 자신의 모양을 그리는 페인트 컴포넌트 보유   
+**오버로딩과 판넬**   
+- 오버라이딩 개발자가 컴포넌트 상속받아 새 컴포넌트 설계   
+- 기존 컴포넌트의 모양에 변화를 주려할때   
+- 판넬 비어있는 컨테   
+- 개발자가 다양한거 하려할 때   
+예제 11-1   
+```
+package chapter11;
+import javax.swing.*;
+import java.awt.*;
+public class paintJPanelEx extends JFrame{
+    public paintJPanelEx(){
+        setTitle("j판넬의 페인트 컴포넌트 예제");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setContentPane(new MyPanel());
+
+        setSize(250,200);
+        setVisible(true);
+    }
+    class MyPanel extends JPanel{
+        public void paintComponent(Graphics g){
+            super.paintComponent(g);
+            g.setColor(Color.BLUE);
+            g.drawRect(10,10,50,50);
+            g.drawRect(50,50,50,50);
+
+            g.setColor(Color.MAGENTA);
+            g.drawRect(90, 90, 50, 50);
+        }
+    }
+    public static void main(String[] args) {
+        new paintJPanelEx();
+    }
+}
+
+```   
+
+
 #### 5월 31일 강의
 **자바의 GUI 프로그래밍 방법 2종류**   
 컴포넌트 기반   
