@@ -11,6 +11,7 @@
 - 기존 컴포넌트의 모양에 변화를 주려할때   
 - 판넬 비어있는 컨테이너    
 - 개발자가 다양한거 하려할 때   
+   
 예제 11-1   
 ```
 package chapter11;
@@ -42,6 +43,132 @@ public class paintJPanelEx extends JFrame{
 }
 
 ```   
+컴포넌트의 한계 극복 차트, 게임등 자유로운 콘텐트 표현   
+그래픽은 컴포넌트에 비해 화면 출력 속도 빠름   
+**Graphics와 문자열 출력**   
+그래픽의 기능   
+색상 선택   
+문자열그리기   
+도형 그리기   
+도형 칠하기   
+이미지 그리기   
+클리핑   
+색: Color 클래스   
+폰트: Font 클래스  
+예제11-2
+```
+package chapter11;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import java.awt.*;
+public class GraphicsColorFontEx extends JFrame{
+    public GraphicsColorFontEx() {
+        setTitle("문자열, 컬러,폰트 사용예제");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setContentPane(new MyPanel());
+
+        setSize(250,200);
+        setVisible(true);
+    }
+     class MyPanel extends JPanel{
+        public void paintComponent(Graphics g){
+            super.paintComponent(g);
+            g.setColor(Color.BLUE);
+            g.drawString("자바가 재밌다.",30, 30);
+            g.setColor(new Color(255,0,0));
+            g.setFont(new Font("Arial",Font.ITALIC,30));
+            g.drawString("How much?",30,70);
+            g.setColor(new Color(0x00ff00ff));
+
+            for(int i=1; i<=4;i++){
+                g.setFont(new Font("Jokerman",Font.ITALIC,i*10));
+                g.drawString("This much!", 30,60+ i*40);
+            }
+        }
+    }
+    public static void main(String[] args) {
+        new GraphicsColorFontEx();
+    }
+}
+
+```   
+도형그리기와 칠하기   
+예제11-3   
+```
+package chapter11;
+
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import java.awt.*;
+public class GraphicsDrawLineEx extends JFrame{
+    public GraphicsDrawLineEx() {
+        setTitle("drawline예제");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setContentPane(new MyPanel());
+
+        setSize(250,200);
+        setVisible(true);
+    }
+     class MyPanel extends JPanel{
+        public void paintComponent(Graphics g){
+            super.paintComponent(g);
+            g.setColor(Color.RED);
+            g.drawLine(20, 20, 100, 100);
+            }
+        }
+    public static void main(String[] args) {
+        new GraphicsDrawLineEx();
+    }
+}
+    
+
+```   
+   
+예제 11-4   
+```
+package chapter11;
+
+
+
+import javax.swing.*;
+import java.awt.*;
+public class GraphicsFillEx extends JFrame{
+    public GraphicsFillEx() {
+        setTitle("fill사용예제");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setContentPane(new MyPanel());
+
+        setSize(250,500);
+        setVisible(true);
+    }
+     class MyPanel extends JPanel{
+        public void paintComponent(Graphics g){
+            super.paintComponent(g);
+            g.setColor(Color.RED);
+            g.fillRect(10,10, 50, 50);
+            g.setColor(Color.BLUE);
+            g.fillOval(10,70, 50, 50);
+            g.setColor(Color.GREEN);
+            g.fillRoundRect(10, 130, 50,50,20,20);
+            g.setColor(Color.MAGENTA);
+            g.fillArc(10,190,50,50,0,270);
+            g.setColor(Color.ORANGE);
+            int[]x = {30,10,30,60};
+            int[]y = {250,275,300,275};
+            g.fillPolygon(x,y,4);
+            }
+        }
+    public static void main(String[] args) {
+        new GraphicsFillEx();
+    }
+}
+    
+
+```
 
 
 #### 5월 31일 강의
