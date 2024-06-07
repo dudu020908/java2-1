@@ -168,7 +168,207 @@ public class GraphicsFillEx extends JFrame{
 }
     
 
+```   
+**이미지 그리는 2가지방법**   
+J라벨을 이용한 이미지 그리기   
+그래픽의 Draw이미지로 이미지그리기   
+예제11-5   
 ```
+package chapter11;
+
+import javax.swing.*;
+import java.awt.*;
+public class GraphicsDrawImageEx1 extends JFrame{
+    public GraphicsDrawImageEx1(){
+        setTitle("원본크기원하는위치에 이미지 그리기");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setContentPane(new MyPanel());
+
+        setSize(300,400);
+        setVisible(true);
+    }
+
+    class MyPanel extends JPanel{
+        private ImageIcon icon = new ImageIcon("images/icon.gif");
+        private Image img = icon.getImage();
+
+        public void paintComponent(Graphics g){
+            super.paintComponent(g);
+
+
+            g.drawImage(img,20,20,this);
+        }
+    }
+    public static void main(String[] args) {
+        new GraphicsDrawImageEx1();
+    }
+}
+
+```   
+   
+예제 11-6   
+```
+package chapter11;
+
+import javax.swing.*;
+import java.awt.*;
+public class GraphicsDrawImageEx2 extends JFrame{
+    public GraphicsDrawImageEx2(){
+        setTitle("패널크기에 맞춰 이미지 그리기");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setContentPane(new MyPanel());
+
+        setSize(300,400);
+        setVisible(true);
+    }
+
+    class MyPanel extends JPanel{
+        private ImageIcon icon = new ImageIcon("images/icon.gif");
+        private Image img = icon.getImage();
+
+        public void paintComponent(Graphics g){
+            super.paintComponent(g);
+
+
+            g.drawImage(img,0,0,getWidth(),getHeight(),this);
+        }
+    }
+    public static void main(String[] args) {
+        new GraphicsDrawImageEx2();
+    }
+}
+
+```   
+
+다시그리기repaint()   
+예제 11-7   
+```
+package chapter11;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class GraphicsDrawOvalMouseEx extends JFrame{
+    public GraphicsDrawOvalMouseEx(){
+        setTitle("마우스 드래그로 타원그리기");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setContentPane(new MyPanel());
+        setSize(300,300);
+        setVisible(true);
+    }
+    public static void main(String[] args) {
+        new GraphicsDrawOvalMouseEx();
+    }
+    class MyPanel extends JPanel{
+        private Point start=null, end=null;
+        public MyPanel(){
+            MyMouseListener listener = new MyMouseListener();
+
+            addMouseListener(listener);
+            addMouseMotionListener(listener);
+        }
+        class MyMouseListener extends MouseAdapter{
+            public void mousePressed(MouseEvent e){
+                start = e.getPoint();
+            }
+            public void mouseDragged(MouseEvent e){
+                end =e.getPoint();
+                repaint();
+            }
+        }
+        public void paintComponent(Graphics g){
+            super.paintComponent(g);
+            if (start==null) 
+                return;
+
+                g.setColor(Color.BLUE);
+                int x = Math.min(start.x,end.x);
+                int y = Math.min(start.y, start.y);
+
+                int width=Math.abs(start.x-end.x);
+                int height=Math.abs(start.y-end.y);
+                g.drawOval(x, y, width, height);
+            }
+        }
+    }
+
+
+```   
+예제11-8   
+```
+package chapter11;
+import javax.swing.*;
+import java.awt.*;
+import java.util.*;
+import java.awt.event.*;
+public class GraphicsDrawLineMouseEx extends JFrame{
+    public GraphicsDrawLineMouseEx(){
+        setTitle("마우스로 여러개의선그리기");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setContentPane(new MyPanel());
+        setSize(300,300);
+        setVisible(true);
+    }
+    public static void main(String[] args) {
+        new GraphicsDrawLineMouseEx();
+    }
+    class MyPanel extends JPanel{
+        private Vector<Point> vStart = new Vector<Point>();
+        private Vector<Point> vEnd = new Vector<Point>();
+
+        public MyPanel(){
+
+            addMouseListener(new MouseAdapter() {
+                public void mousePressed(MouseEvent e){
+                    Point startP = e.getPoint();
+                    vStart.add(startP);
+                }
+                public void mouseReleased(MouseEvent e){
+                    Point endP = e.getPoint();
+                    vEnd.add(endP);
+
+                    repaint();
+                }
+            });
+        }
+        public void paintComponent(Graphics g){
+            super.paintComponent(g);
+            g.setColor(Color.BLUE);
+
+            for(int i=0;i<vStart.size();i++){
+                Point s = vStart.elementAt(i);
+                Point e = vEnd.elementAt(i);
+
+                g.drawLine((int)s.getX(),(int)s.getY(),(int)e.getX(),(int)e.getY());
+            }
+        }
+    }
+}
+
+```   
+##### 12장 스레드   
+멀티태스킹   
+- 여러개의 작업이 동시에 처리되는것을 뜻함   
+   
+스레드   
+- 운영체제에 의해 관리되는 하나의 작업혹은 테스크   
+- 스레드와 테스크는 바꾸어 사용해도 무관하다   
+   
+멀티스레딩   
+- 여러 스레드를 동시에 실행 시키는 응용 프로그램을 작성하는기법   
+   
+스레드 구성   
+- 스레드 코드   작업을 실행하기위해 작성한 프로그램 코드 스레드정보   
+멀티 태스킬 구현 기술   
+- 멀티프로세싱   
+- 하나의 응용 프로그램이 여러 개의 프로세스를 생성하고, 각프로세스가 하나의 작업을 처리하는 기법   
+- 각 프로세스 독립된 메모리 영역을 보유하고 실행   
+- 프로세스 사이의 문맥 교환에 따른 과도한 오버헤드와 시간소모의 문제점   
+   
+멀티스레딩   
+- 하나의 응용프로그햄이 여러개의 스레드를 생성하고 각 스레드가 하나의 작업을 처리하는과정   
+- 하나의 응용프로그램에 속한 스레드는 변수메모리, 파일 오픈 테이블등 자원으로 공유하므로, 문맥교환에 따른 오버헤드가 매우 작음   
+- 현재 대부분의 운영체제가 멀티스레딩을 기본으로 하고있음   
+   
 
 
 #### 5월 31일 강의
