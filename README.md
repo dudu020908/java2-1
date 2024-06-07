@@ -559,15 +559,11 @@ public class VibratingFrame extends JFrame implements Runnable{
    
 자바의 스레드 동기화 방법 - 2가지   
 - 싱크로나이즈드 키워드로 동기화 블록 지정   
-- wait() - rotify() 메소드로 스레드의 실행순서를 제어   
+- wait() - notify() 메소드로 스레드의 실행순서를 제어   
    
+wait notify 필요한경우     
+공유 데이터로 두개 이상의 스레드가 데이터를 주고 받을때   
    
-예제 12-5   
-```
-
-```   
-   
-
 #### 5월 31일 강의
 **자바의 GUI 프로그래밍 방법 2종류**   
 컴포넌트 기반   
