@@ -47,6 +47,125 @@ public class FileReaderEx {
 }
 ```   
    
+예제 13-2   
+```
+package chapter13;
+
+import java.io.*;
+
+public class FileWriterEx {
+
+    public static void main(String[] args) {
+        InputStreamReader in = new InputStreamReader(System.in);
+
+        FileWriter fout = null;
+        int c;
+        try{
+            fout = new FileWriter("c:\\temp\\test.txt");
+            
+            while ((c= in.read())!= -1) {
+                fout.write(c);
+            }
+            in.close();
+            fout.close();
+        }
+        catch(IOException e){
+            System.out.println("입출력 오류");
+        }
+    }
+}
+
+
+
+```   
+   
+예제 13-3   
+```
+package chapter13;
+
+import java.io.*;
+
+public class FileOutputStreamEx {
+    public static void main(String[] args) {
+        byte b[]={7,51,3,4,-1,24};
+        
+        try{
+            FileOutputStream fout = new FileOutputStream("c:\\Temp\\test.out");
+            for(int i=0;i<b.length;i++)
+                fout.write(b[i]);
+            fout.close();
+        } catch(IOException e) { }
+        System.out.println("c:\\Temp\\test.out을 저장하였습니다.");
+    }
+}
+
+```   
+   
+예제 13-4   
+```
+package chapter13;
+import java.io.*;
+public class FileInputStreamEx {
+    public static void main(String[] args) {
+        byte b[]= new byte[6];
+        try {
+            FileInputStream fin = new FileInputStream("c:\\Temp\\test.out");
+            int n=0,c;
+            while ((c= fin.read())!=-1) {
+                b[n]=(byte)c;
+                n++;
+            }
+            System.out.println("c:\\\\Temp\\\\test.out에서읽은 배열을 출력합니다.");
+            for(int i=0;i<b.length;i++)
+                    System.out.print(b[i]+ " ");
+            System.out.println();
+            fin.close();
+        } catch (Exception e) {}
+    }
+}
+
+```   
+   
+예제 13-5   
+```
+package chapter13;
+import java.io.*;
+public class FileClassExample {
+    public static void listDirectory(File dir) {
+        System.out.println("-----"+dir.getPath()+"의 서브리스트입니다.-----");
+        File[] subFiles = dir.listFiles();
+
+        for(int i= 0;i<subFiles.length;i++){
+            File f = subFiles[i];
+            long t = f.lastModified();
+            System.out.print(f.getName());
+            System.out.print("\t파일크기: "+f.length());
+            System.out.printf("\t수정한 시간 : %tb %td %ta %tT\n",t,t,t,t);
+        }
+    }
+    public static void main(String[] args) {
+        File f1 = new File("c:\\windows\\system.ini");
+        System.out.println(f1.getPath()+", "+f1.getParent()+ ", "+f1.getName());
+
+        String res ="";
+        if (f1.isFile()) res = "파일"; 
+        else if (f1.isDirectory()) res = "디렉토리"; 
+        System.out.println(f1.getPath()+"은 "+res + "입니다.");    
+        
+        
+    }
+}
+
+```   
+   
+##### **TCP/IP 소개**   
+두 시스템간에 데이터가 손상없이 전송되도록 하는 프로토콜   
+연결형 통신, 한번 연결후 쭉 전송가능   
+IP 주소   
+네트워크 상에서 유일하게 식별될 수 있는 인터넷 주소   
+   
+
+
 #### 6월 7일 강의   
 **스윙 컴포넌트 그리기 paintComponent()**   
 - 스윙의 페인팅 기본   
